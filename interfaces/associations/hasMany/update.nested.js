@@ -114,9 +114,9 @@ describe('Association Interface', function() {
                 assert(!err);
                 assert(model.name === '1:m update nested - updated');
                 assert(model.payments.length === 3);
-                assert(model.payments[0].amount === 3);
-                assert(model.payments[1].amount === 4);
-                assert(model.payments[2].amount === 5);
+                assert(_.find(model.payments, { amount: 3 }));
+                assert(_.find(model.payments, { amount: 4 }));
+                assert(_.find(model.payments, { amount: 5 }));
                 done();
               });
 
@@ -183,8 +183,8 @@ describe('Association Interface', function() {
                 assert(model.payments.length === 2);
 
                 // Ensure association values were updated
-                assert(model.payments[0].amount === 1);
-                assert(model.payments[1].amount === 2);
+                assert(_.find(model.payments, { amount: 1 }));
+                assert(_.find(model.payments, { amount: 2 }));
 
                 done();
               });

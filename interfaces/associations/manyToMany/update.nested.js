@@ -111,9 +111,9 @@ describe('Association Interface', function() {
                 assert(!err);
                 assert(model.name === 'm:m update nested - updated');
                 assert(model.taxis.length === 3);
-                assert(model.taxis[0].medallion === 3);
-                assert(model.taxis[1].medallion === 4);
-                assert(model.taxis[2].medallion === 5);
+                assert(_.find(model.taxis, { medallion: 3 }));
+                assert(_.find(model.taxis, { medallion: 4 }));
+                assert(_.find(model.taxis, { medallion: 5 }));
                 done();
               });
 
@@ -180,8 +180,8 @@ describe('Association Interface', function() {
                 assert(model.taxis.length === 2);
 
                 // Ensure association values were updated
-                assert(model.taxis[0].medallion === 1);
-                assert(model.taxis[1].medallion === 2);
+                assert(_.find(model.taxis, { medallion: 1 }));
+                assert(_.find(model.taxis, { medallion: 2 }));
 
                 done();
               });

@@ -33,7 +33,7 @@ describe('Association Interface', function() {
               .exec(function(err, model) {
                 assert(!err);
                 assert(model.taxis.length === 2);
-                assert(model.taxis[1].medallion === 2);
+                assert(_.find(model.taxis, { medallion: 2 }));
                 done();
               });
 

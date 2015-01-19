@@ -60,8 +60,8 @@ describe('Association Interface', function() {
           assert(profiles[0].user);
           assert(profiles[1].user);
 
-          assert(profiles[0].user.name === 'foo1');
-          assert(profiles[1].user.name === 'bar1');
+          assert(_.find(_.pluck(profiles, 'user'), { name: 'foo1' }));
+          assert(_.find(_.pluck(profiles, 'user'), { name: 'bar1' }));
 
           done();
         });
@@ -77,8 +77,10 @@ describe('Association Interface', function() {
           assert(users[0].profile);
           assert(users[1].profile);
 
-          assert(users[0].profile.name === 'profile one');
-          assert(users[1].profile.name === 'profile two');
+          assert(_.find(_.pluck(users, 'profile'), { name: 'profile one' }));
+          assert(_.find(_.pluck(users, 'profile'), { name: 'profile two' }));
+          //assert(users[0].profile.name === 'profile one');
+          //assert(users[1].profile.name === 'profile two');
 
           done();
         });

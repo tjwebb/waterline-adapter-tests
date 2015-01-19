@@ -33,7 +33,7 @@ describe('Association Interface', function() {
               .exec(function(err, model) {
                 if(err) return done(err);
                 assert(model.payments.length === 2);
-                assert(model.payments[1].amount === 2);
+                assert(_.find(model.payments, { amount: 2 }));
                 done();
               });
 
