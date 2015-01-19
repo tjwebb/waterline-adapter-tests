@@ -29,7 +29,6 @@ describe('Association Interface', function() {
             return Associations.Paymentbelongs.findOne(payment.id).populate('customer');
           })
           .then(function (_paymnt) {
-            console.log('payment populate customer', _paymnt);
             assert.equal(_paymnt.customer.title, 'belongsTo nested create',
               'Expecting `_paymnt.customer.title`==="belongsTo nested create", but instead `_paymnt` ==>'+
               util.inspect(_paymnt, false, null));
