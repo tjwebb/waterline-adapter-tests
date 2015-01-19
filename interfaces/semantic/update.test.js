@@ -37,8 +37,9 @@ describe('Semantic Interface', function() {
         }
 
         Semantic.User.createEach(users, function(err, users) {
-          if(err) return done(err);
+          if (err) return done(err);
           id = users[0].id.toString();
+          assert.equal(users.length, 10);
           done();
         });
       });
@@ -50,17 +51,20 @@ describe('Semantic Interface', function() {
 
       it('should update model attributes', function(done) {
         Semantic.User.update({ type: 'update' }, { last_name: 'updated' }, function(err, users) {
+          if (err) console.error(err);
           assert(!err);
           assert(Array.isArray(users));
-          assert(users.length === 10);
-          assert(users[0].last_name === 'updated');
+          assert.equal(users.length, 10);
+          assert.equal(users[0].last_name, 'updated');
           done();
         });
       });
 
       it('should return model instances', function(done) {
        Semantic. User.update({ type: 'update' }, { last_name: 'updated again' }).exec(function(err, users) {
+          if (err) console.error(err);
           assert(!err);
+          assert(users[0]);
           assert(users[0].id);
           assert(users[0].first_name.indexOf('update_user') === 0);
           assert(users[0].last_name === 'updated again');
@@ -72,25 +76,28 @@ describe('Semantic Interface', function() {
 
       it('should work with just an ID passed in', function(done) {
         Semantic.User.update(id, { first_name: 'foo' }).sort('first_name').exec(function(err, users) {
+          if (err) console.error(err);
           assert(!err);
-          assert(users[0].first_name === 'foo');
+          assert.equal(users[0].first_name, 'foo');
           done();
         });
       });
 
       it('should work with an empty object', function(done) {
         Semantic.User.update({}, { type: 'update all' }, function(err, users) {
+          if (err) console.error(err);
           assert(!err);
-          assert(users.length === 10);
-          assert(users[0].type === 'update all');
+          assert.equal(users.length, 10);
+          assert.equal(users[0].type, 'update all');
           done();
         });
       });
 
       it('should work with null values', function(done) {
         Semantic.User.update(id, { age: null }, function(err, users) {
+          if (err) console.error(err);
           assert(!err);
-          assert(users[0].age === null);
+          assert.equal(users[0].age, null);
           done();
         });
       });
@@ -129,6 +136,7 @@ describe('Semantic Interface', function() {
 
       it('should allow the record to be found', function(done) {
         Semantic.User.find({ type: 'updateFind' }, function(err, users) {
+          if (err) console.error(err);
           assert(!err);
           assert(users.length === 2);
           assert(users[0].last_name === 'Updated Find');

@@ -39,7 +39,8 @@ describe('Queryable Interface', function() {
             assert(!err);
             assert(Array.isArray(users));
             assert(users.length === 2);
-            assert(users[0].age === 40);
+            console.log('users[0].age', users[0].age);
+            assert(users[0].age < 42);
             done();
           });
         });
@@ -51,7 +52,7 @@ describe('Queryable Interface', function() {
             assert(!err);
             assert(Array.isArray(users));
             assert(users.length === 2);
-            assert(users[0].age === 40);
+            assert(users[0].age < 42);
             done();
           });
         });
@@ -146,7 +147,7 @@ describe('Queryable Interface', function() {
             assert(!err);
             assert(Array.isArray(users));
             assert(users.length === 3);
-            assert(users[0].age === 40);
+            assert(users[0].age <= 42);
             done();
           });
         });
@@ -156,7 +157,7 @@ describe('Queryable Interface', function() {
             assert(!err);
             assert(Array.isArray(users));
             assert(users.length === 3);
-            assert(users[0].age === 40);
+            assert(users[0].age <= 42);
             done();
           });
         });
@@ -201,7 +202,7 @@ describe('Queryable Interface', function() {
             assert(!err);
             assert(Array.isArray(users));
             assert(users.length === 2);
-            assert(users[1].first_name === 'lessThanOrEqual_dates_user1');
+            assert(_.find(users, { first_name: 'lessThanOrEqual_dates_user1' }));
             done();
           });
         });
@@ -211,7 +212,7 @@ describe('Queryable Interface', function() {
             assert(!err);
             assert(Array.isArray(users));
             assert(users.length === 2);
-            assert(users[1].first_name === 'lessThanOrEqual_dates_user1');
+            assert(_.find(users, { first_name: 'lessThanOrEqual_dates_user1' }));
             done();
           });
         });

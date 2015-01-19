@@ -34,8 +34,8 @@ describe('Queryable Interface', function() {
       it('should return correct user', function(done) {
         Queryable.User.find({ first_name: { '!': ["foo", testName, "bar", "baz"] }}, function(err, users) {
           assert(!err);
-          assert(users.length === 1);
-          assert(users[0].first_name === 'something else');
+          assert.equal(users.length, 1);
+          assert.equal(users[0].first_name, 'something else');
           done();
         });
       });
@@ -59,8 +59,10 @@ describe('Queryable Interface', function() {
 
       it('should return an empty array', function(done) {
         Queryable.User.find({ first_name: { '!': ["foo", testName, "bar", "something else"] }}, function(err, users) {
-          assert(users.length === 0);
-          done();
+          console.log(err);
+          console.log(users);
+          assert.equal(users.length, 0);
+          done(err);
         });
       });
     });

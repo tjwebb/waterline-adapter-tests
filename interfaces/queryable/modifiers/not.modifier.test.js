@@ -37,7 +37,7 @@ describe('Queryable Interface', function() {
           assert(!err);
           assert(Array.isArray(users));
           assert(users.length === 3);
-          assert(users[0].age === 41);
+          assert.notEqual(users[0].age, 40);
 
           // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           // TODO: check that models without the attribute in question set AT ALL,
@@ -55,7 +55,7 @@ describe('Queryable Interface', function() {
           assert(!err);
           assert(Array.isArray(users));
           assert(users.length === 3);
-          assert(users[0].age === 41);
+          assert.notEqual(users[0].age, 40);
           done();
         });
       });
@@ -68,8 +68,8 @@ describe('Queryable Interface', function() {
 
           assert(Array.isArray(users));
           assert(users.length === 3);
-          assert(users[0].age === 40);
-          assert(users[1].age === 42);
+          assert.notEqual(users[0].email, '41@test.com');
+          assert.notEqual(users[1].email, '41@test.com');
           done();
         });
       });
