@@ -83,7 +83,7 @@ describe('Semantic Interface', function() {
           if (err) return next(err);
           assert(!err);
           assert(users.length === 4, 'Expecting 4 "users", but actually got '+users.length+': '+require('util').inspect(users, false, null));
-          assert.equal(users[0].first_name, 'test_0');
+          assert(_.find(users, { first_name: 'test_0' }));
           done();
         });
       });
